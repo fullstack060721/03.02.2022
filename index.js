@@ -1,14 +1,26 @@
 const express = require('express')
 const sqlite3 = require('sqlite3')
+const pg = require('pg')
 const path = require('path')
 const knex = require('knex')
 
 const app = express()
-
+/*
 const connectedKnex = knex({
     client: "sqlite3",
     connection: {
         filename: "employee.db"
+    }
+})
+*/
+const connectedKnex = knex({
+    client: "pg",
+    versio: '12',
+    connection: {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: 'admin',
+        database: 'test1'
     }
 })
 
@@ -33,8 +45,8 @@ app.get('/employees/:emp_id', async(req, res) => {
 app.post('/employees', async(req, res) => {
     try {
     emp = req.body // { name: '', age: '', address: '', salary: '' }
-    const result = await connectedKnex('employee').insert(emp);
-        //.returning('id');
+    const result = await connectedKnex('employee').insert(emp)
+        .returning('id');
     console.log(emp)
     res.status(201).json({ 
         res: 'success',
