@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "npx nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/fullstack060721/03.02.2022#readme",
   "dependencies": {
+    "express": "^4.17.2",
     "knex": "^0.95.15",
+    "nodemon": "^2.0.15",
     "sqlite3": "^5.0.2"
   }
 }
