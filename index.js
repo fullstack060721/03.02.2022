@@ -67,6 +67,23 @@ app.put('/employees/:emp_id', async(req, res) => {
     })}
 });
 
+app.delete('/employees/:emp_id', async(req, res) => {
+    try {
+    emp_id = req.params.emp_id
+    const result = await connectedKnex('employee').where('id', emp_id).
+                            del();
+    res.status(204).json({ 
+        res: 'success'
+    })
+    } 
+    catch(err) {
+        res.status(400).json({
+            res: 'fail',
+            message: err.message
+    })}
+});
+
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
 });
