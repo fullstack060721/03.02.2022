@@ -16,6 +16,15 @@ app.use(express.static(path.join(__dirname, '/')))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+// <url>/employees
+// <url>/employees/1
+// <url>/customers
+app.get('/employees', async(req, res) => {
+    const employees = await connectedKnex('employee').select('*')
+    res.status(200).json({ employees })
+});
+
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
 });
