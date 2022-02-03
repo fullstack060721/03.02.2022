@@ -33,12 +33,12 @@ app.get('/employees/:emp_id', async(req, res) => {
 app.post('/employees', async(req, res) => {
     try {
     emp = req.body // { name: '', age: '', address: '', salary: '' }
-    const result = await connectedKnex('employee').insert(emp)
-        .returning('id');
+    const result = await connectedKnex('employee').insert(emp);
+        //.returning('id');
     console.log(emp)
     res.status(201).json({ 
         res: 'success',
-        url: `localhost:3000/employees/${emp.ID}`
+        url: `localhost:3000/employees/${result[0]}`
     })
     } 
     catch(err) {
@@ -48,7 +48,7 @@ app.post('/employees', async(req, res) => {
     })}
 });
 
-
+// .update --> .del()
 app.put('/employees/:emp_id', async(req, res) => {
     try {
     emp_id = req.params.emp_id
