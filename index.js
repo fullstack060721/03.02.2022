@@ -34,9 +34,11 @@ app.post('/employees', async(req, res) => {
     try {
     emp = req.body // { name: '', age: '', address: '', salary: '' }
     const result = await connectedKnex('employee').insert(emp)
+        .returning('id');
+    console.log(emp)
     res.status(201).json({ 
         res: 'success',
-        url: `localhost:3000/employees/${emp.id}`
+        url: `localhost:3000/employees/${emp.ID}`
     })
     } 
     catch(err) {
@@ -47,6 +49,23 @@ app.post('/employees', async(req, res) => {
 });
 
 
+app.put('/employees/:emp_id', async(req, res) => {
+    try {
+    emp_id = req.params.emp_id
+    emp = req.body // { name: '', age: '', address: '', salary: '' }
+    const result = await connectedKnex('employee').where('id', emp_id).
+                            update(emp);
+    res.status(204).json({ 
+        res: 'success',
+        url: `localhost:3000/employees/${emp_id}`
+    })
+    } 
+    catch(err) {
+        res.status(400).json({
+            res: 'fail',
+            message: err.message
+    })}
+});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
