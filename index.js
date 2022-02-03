@@ -4,6 +4,17 @@ const pg = require('pg')
 const path = require('path')
 const knex = require('knex')
 
+const winston = require('winston')
+let logConfiguratuion = {
+    'transports': [
+        new winston.transports.Console,
+        new winston.transports.File({
+            filename: 'example.log'})
+    ]
+}
+let logger = new winston.createLogger(logConfiguratuion)
+logger.info('Hello World')
+
 const app = express()
 /*
 const connectedKnex = knex({
@@ -15,7 +26,7 @@ const connectedKnex = knex({
 */
 const connectedKnex = knex({
     client: "pg",
-    versio: '12',
+    version: '12',
     connection: {
         host: '127.0.0.1',
         user: 'postgres',
@@ -54,6 +65,7 @@ app.post('/employees', async(req, res) => {
     })
     } 
     catch(err) {
+        logger.error(err.message)
         res.status(400).json({
             res: 'fail',
             message: err.message

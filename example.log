@@ -1,0 +1,10 @@
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"info","message":"Hello World"}
+{"level":"error","message":"insert into \"employee\" (\"address\", \"age\", \"id\", \"name\", \"salary\") values ($1, $2, $3, $4, $5) returning \"id\" - cannot insert into column \"id\""}
+{"level":"info","message":"Hello World"}
