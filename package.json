@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/fullstack060721/03.02.2022/issues"
   },
-  "homepage": "https://github.com/fullstack060721/03.02.2022#readme"
+  "homepage": "https://github.com/fullstack060721/03.02.2022#readme",
+  "dependencies": {
+    "knex": "^1.0.2",
+    "sqlite3": "^5.0.2"
+  }
 }
